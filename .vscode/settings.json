@@ -1,0 +1,7 @@
+{
+    // Is git enabled
+    "git.enabled": false,
+
+    // Whether auto fetching is enabled.
+    "git.autofetch": false
+}
