@@ -386,8 +386,8 @@ body, html {
 
 #scroll-hex #scroll-container.opaque {
   opacity: 1;
-  -webkit-animation: jump 4s ease infinite;
-  animation: jump 4s ease infinite;
+  -webkit-animation: none;
+  animation: none;
 }
 
 .page {
@@ -516,7 +516,7 @@ body, html {
 
 .split .half {
   position: relative;
-  width: 50vw;
+  width: 50%;
   height: 100vh;
   float: left;
 }
@@ -560,11 +560,23 @@ body, html {
   font-family: AppleGothic;
   font-size: 15px;
   padding: 30px;
-  padding-top: 120px;
-  width: calc(50vw - 60px);
+  padding-top: 100px;
+  width: calc(50% - 60px);
   height: auto;
-  color: black;
+  color: #00000060;
   background-color: white;
+}
+
+.split .half.white .title {
+  font-family: Hiragino Kaku Gothic StdN;
+  font-weight: 900;
+  color: #1D396B;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+#hexagon-graph div > .first {
+  fill: #1D396B;
 }
 
 #impactText.higher {
@@ -578,7 +590,7 @@ body, html {
 }
 
 #impactText.higher, #impactText.fixing {
-  left: 50vw;
+  left: 50%;
 }
 
 #teamText.higher {
@@ -596,7 +608,160 @@ body, html {
 }
 
 #teamText.higher + .right, #teamText.fixing + .right {
-  left: 50vw;
+  left: 50%;
+}
+
+#teamParagraph .headshot {
+  width: 150px;
+  float: left;
+}
+
+#teamParagraph .bio {
+  display: block;
+  clear: both;
+  margin: 50px 0px;
+  font-size: 0.9em;
+  line-height: 140%;
+  color: #00000050;
+}
+
+#teamParagraph .bio .headshot {
+  margin-right: 10px;
+  margin-left: -7px;
+}
+
+#teamParagraph .bio .name {
+  float: left;
+  font-size: 1.5em;
+  display: block;
+  margin-right: 4px;
+  color: #00000090;
+  font-family: Hiragino Kaku Gothic Pro;
+}
+
+#teamParagraph .bio .position {
+  font-style: italic;
+  padding-top: 4px;
+  padding-bottom: 3px;
+  color: #00000038;
+}
+
+#teamParagraph .bio .text {
+  display: block;
+}
+
+#teamParagraph .bio span {
+  opacity: 0;
+}
+
+#teamParagraph .bio:nth-child(2n + 1) .headshot {
+  float: right;
+  margin-right: -7px;
+  margin-left: 10px;
+}
+
+#teamParagraph .bios {
+  clear: both;
+  display: inline-block;
+  margin: 0px calc(50% - 217.5px);
+  padding-bottom: 40px;
+}
+
+#teamParagraph .bios .row {
+  position: relative;
+  overflow: auto;
+}
+
+#teamParagraph .bios .row .headshot {
+  margin-right: -5px;
+  float: left;
+}
+
+#teamParagraph .bios .second-row {
+  margin-top: -30px;
+  margin-left: 72px;
+}
+
+#hexagon-button {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+  top: -95px;
+  left: calc(50% - 106px);
+  opacity: 0.1;
+  cursor: pointer;
+  z-index: -1;
+}
+
+#contact1 {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  color: #FFFFFF80;
+  font-size: 20px;
+}
+
+#contact2 {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  color: #FFFFFF60;
+  font-size: 17px;
+}
+
+.contact-text {
+  width: 200px !important;
+}
+
+.contact-text:hover #hexagon-button {
+  opacity: 0.9;
+}
+
+.contact-text:hover #contact1 {
+  color: #1D396B;
+  opacity: 0.8;
+}
+
+.contact-text:hover #contact2 {
+  color: #1D396B;
+  opacity: 0.4;
+}
+
+@media screen and (min-width: 1280px) {
+  #landing {
+    width: 100vw;
+  }
+  #impactContent {
+    padding-left: calc(50vw - 610px);
+    width: 580px;
+  }
+  #impactText {
+    width: 640px;
+  }
+  #teamText, #teamText.fixing, #teamText.higher {
+    left: calc(50vw - 640px);
+    width: 640px;
+  }
+  #teamText {
+    margin-right: calc(50vw - 640px);
+  }
+  #teamText.fixing, #teamText.higher {
+    margin-right: 0px;
+  }
+  #teamParagraph {
+    width: 580px;
+    padding-right: calc(50vw - 610px);
+  }
 }
 
 .hex-10 {

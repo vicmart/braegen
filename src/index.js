@@ -171,6 +171,70 @@ class HexagonOutline extends React.Component {
   }
 }
 
+class HexagonButton extends React.Component {
+  constructor(props) {
+    super(props);
+    const size = this.props.size;
+
+    this.x = 0;
+    this.y = 0;
+
+    this.state = {
+      size: size,
+      hover: false
+    };
+  }
+
+  renderHexagon(size, opacity, animated = false, classname = "animated") {
+    return <Hexagon className={classname} size={size} opacity={opacity} pos={[this.x, this.y]} animated={animated} />;
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
+  render() {
+    return(
+      <div>
+        {this.renderHexagon(this.props.size, 100, false)}
+      </div>
+    );
+  }
+}
+
+
+class HexagonGraphs extends React.Component {
+  constructor(props) {
+    super(props);
+    const size = this.props.size;
+
+    this.x = 0;
+    this.y = 0;
+
+    this.state = {
+      size: size,
+      hover: false
+    };
+  }
+
+  renderHexagon(size, opacity, animated = false, classname = "animated") {
+    return <Hexagon className={classname} size={size} opacity={opacity} pos={[this.x, this.y]} animated={animated} />;
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
+  render() {
+    return(
+      <div>
+        {this.renderHexagon(this.props.size, 100, false, "first")}
+        {this.renderHexagon(this.props.size, 100, false, "second")}
+      </div>
+    );
+  }
+}
+
 class NavItem extends React.Component {
   render() {
     this.active = (this.props.active - this.props.num) === 0 ? true : false;
@@ -273,7 +337,7 @@ class NavBar extends React.Component {
         {this.renderNavItem("Home", this.state.active_page)}
         {this.renderNavItem("Mission", this.state.active_page)}
         {this.renderNavItem("Impact", this.state.active_page)}
-        {this.renderNavItem("Team", this.state.active_page)}
+        {this.renderNavItem("People", this.state.active_page)}
         {this.renderNavItem("Contact", this.state.active_page)}
         {this.renderHexagon(25, 90)}
       </div>
@@ -401,7 +465,7 @@ class ScrollHex extends React.Component {
       }
       
       if (halfCurPage > 3) {
-        if (curPage == 3) {
+        if (curPage === 3) {
           this.setState({
             scrollOffset: document.querySelector("#team").offsetHeight - (window.innerHeight)
           });
@@ -445,3 +509,13 @@ ReactDOM.render(<Quotes />, document.querySelector("#quotes"));
 ReactDOM.render(<ScrollHex />, document.querySelector("#scroll-hex"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline1"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline2"));
+ReactDOM.render(<HexagonButton size={120}/>, document.querySelector("#hexagon-button"));
+ReactDOM.render(<HexagonGraphs size={90}/>, document.querySelector("#hexagon-graphs"));
+
+var bios = document.getElementsByClassName('bio');
+Array.prototype.forEach.call(bios, function(elements, index) {
+  var bioheight = document.getElementsByClassName('bio')[index].offsetHeight;
+  var hexheight = document.getElementsByClassName('headshot')[index].height.baseVal.value;
+
+  document.getElementsByClassName('headshot')[index].style.marginTop = (hexheight - bioheight)/-2;
+});
