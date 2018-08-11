@@ -559,6 +559,7 @@ body, html {
   text-align: justify;
   font-family: AppleGothic;
   font-size: 15px;
+  line-height: 140%;
   padding: 30px;
   padding-top: 100px;
   width: calc(50% - 60px);
@@ -664,7 +665,6 @@ body, html {
   clear: both;
   display: inline-block;
   margin: 0px calc(50% - 217.5px);
-  padding-bottom: 40px;
 }
 
 #teamParagraph .bios .row {
@@ -680,6 +680,35 @@ body, html {
 #teamParagraph .bios .second-row {
   margin-top: -30px;
   margin-left: 72px;
+}
+
+#teamParagraph .bio-titles {
+  margin-bottom: 120px;
+  overflow: auto;
+}
+
+#teamParagraph .bio-titles .group {
+  position: absolute;
+  width: 140px;
+  text-align: center;
+}
+
+#teamParagraph .bio-titles .group .title {
+  font-size: 1.1em;
+  color: #00000090;
+  font-family: Hiragino Kaku Gothic Pro;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+#teamParagraph .bio-titles .group .sub {
+  font-size: 0.7em;
+  color: #00000050;
+}
+
+#teamParagraph .bio-titles .group .subtitle {
+  font-size: 0.8;
+  color: #00000050;
 }
 
 #hexagon-button {
