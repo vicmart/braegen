@@ -510,12 +510,29 @@ ReactDOM.render(<ScrollHex />, document.querySelector("#scroll-hex"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline1"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline2"));
 ReactDOM.render(<HexagonButton size={120}/>, document.querySelector("#hexagon-button"));
-ReactDOM.render(<HexagonGraphs size={90}/>, document.querySelector("#hexagon-graphs"));
+//ReactDOM.render(<HexagonGraphs size={90}/>, document.querySelector("#hexagon-graphs"));
 
-var bios = document.getElementsByClassName('bio');
-Array.prototype.forEach.call(bios, function(elements, index) {
-  var bioheight = document.getElementsByClassName('bio')[index].offsetHeight;
-  var hexheight = document.getElementsByClassName('headshot')[index].height.baseVal.value;
+resize();
 
-  document.getElementsByClassName('headshot')[index].style.marginTop = (hexheight - bioheight)/-2;
-});
+window.onresize = function(event) {
+  resize();
+};
+
+function resize() {
+  var bios = document.getElementsByClassName('bio');
+  Array.prototype.forEach.call(bios, function(elements, index) {
+    var bioheight = document.getElementsByClassName('bio')[index].offsetHeight;
+    var hexheight = document.getElementsByClassName('headshot')[index].height.baseVal.value;
+  
+    document.getElementsByClassName('headshot')[index].style.marginTop = (hexheight - bioheight)/-2;
+  });
+  
+  var sponsor_bios = document.getElementsByClassName('sponsor-bio');
+  Array.prototype.forEach.call(sponsor_bios, function(elements, index) {
+    var biowidth = document.getElementsByClassName('sponsor-bio')[index].offsetWidth;
+    var hexwidth = document.getElementsByClassName('sponsor-headshot')[index].width.baseVal.value;
+    var hexleft = document.getElementsByClassName('sponsor-headshot')[index].getBoundingClientRect().x;
+  
+    document.getElementsByClassName('sponsor-bio')[index].style.left = (hexwidth - biowidth)/2 + (hexleft - (window.innerWidth/2)) + "px";
+  });  
+}

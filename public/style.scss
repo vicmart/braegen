@@ -467,6 +467,7 @@ body, html {
             text-align: justify;
             font-family: $paragraph-font;
             font-size: 15px;
+            line-height: 140%;
             padding: 30px;
             padding-top: 100px;
             width: calc(50% - 60px);
@@ -583,7 +584,6 @@ body, html {
         clear: both;
         display: inline-block;
         margin: 0px calc(50% - 217.5px);
-        padding-bottom: 40px;
 
         .row {
             position: relative;
@@ -598,6 +598,35 @@ body, html {
             margin-top: -30px;
             margin-left: 72px;
             
+        }
+    }
+
+    .bio-titles {
+        margin-bottom: 120px;
+        overflow: auto;
+
+        .group {
+            position: absolute;
+            width: 140px;
+            text-align: center;
+
+            .title {
+                font-size: 1.1em;
+                color: #00000090;
+                font-family: $header-font;
+                font-weight: normal;
+                margin-bottom: 5px;
+            }
+
+            .sub {
+                font-size: 0.7em;
+                color: #00000050;
+            }
+
+            .subtitle {
+                font-size: 0.8;
+                color: #00000050;
+            }
         }
     }
 }
