@@ -489,6 +489,7 @@ body, html {
   font-style: italic;
   font-size: 15px;
   color: #FFFFFF80;
+  width: auto;
 }
 
 #mission #quotes .quote-container {
@@ -620,10 +621,17 @@ body, html {
 #teamParagraph .bio {
   display: block;
   clear: both;
-  margin: 50px 0px;
+  margin: 30px 0px;
   font-size: 0.9em;
   line-height: 140%;
   color: #00000050;
+  overflow: visible;
+}
+
+#teamParagraph .bio .group {
+  float: left;
+  width: calc(100% - 153px);
+  overflow: auto;
 }
 
 #teamParagraph .bio .headshot {
@@ -645,6 +653,7 @@ body, html {
   padding-top: 4px;
   padding-bottom: 3px;
   color: #00000038;
+  text-align: left;
 }
 
 #teamParagraph .bio .text {
@@ -790,6 +799,60 @@ body, html {
   #teamParagraph {
     width: 580px;
     padding-right: calc(50vw - 610px);
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .bio {
+    margin: 100px 0px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .team-member .position {
+    clear: both;
+    margin-top: 3px;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .half {
+    width: calc(100% - 60px) !important;
+    left: 0% !important;
+    margin-left: 0px !important;
+  }
+  .blue {
+    position: relative !important;
+    display: none !important;
+  }
+  #scroll-hex {
+    display: none;
+  }
+  #hook {
+    font-size: 25px !important;
+    width: 450px;
+  }
+  #mission .text {
+    width: calc(100% - 150px) !important;
+  }
+  #mission #author {
+    display: none;
+  }
+  .nav-item {
+    width: 100vw !important;
+    margin: 0px !important;
+    margin-top: 0px !important;
+    padding: 0px;
+    background-color: #ffffff !important;
+    height: 0px;
+  }
+  .nav-item.expand {
+    padding: 25px 0px;
+    height: 0px;
+  }
+  .nav-item:nth-of-type(5) {
+    border-bottom: 3px solid #1D396B !important;
   }
 }
 

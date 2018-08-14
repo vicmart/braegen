@@ -279,22 +279,28 @@ class NavBar extends React.Component {
     let curPage = getCurPage(event);
     let pageHeight = document.getElementsByClassName("page")[0].offsetHeight;
 
-    if (event.srcElement.body.scrollTop > pageHeight - 100) {
+    if (window.innerWidth < 900) {
       document.getElementById("nav-bar").classList.add("fixed");
       document.getElementById("nav-bar").classList.remove("partially-fixed-1");
       document.getElementById("nav-bar").classList.remove("partially-fixed-2");
-    } else if (event.srcElement.body.scrollTop > pageHeight/2) {
-      document.getElementById("nav-bar").classList.remove("fixed");
-      document.getElementById("nav-bar").classList.remove("partially-fixed-1");
-      document.getElementById("nav-bar").classList.add("partially-fixed-2");
-    } else if (event.srcElement.body.scrollTop > 100) {
-      document.getElementById("nav-bar").classList.remove("fixed");
-      document.getElementById("nav-bar").classList.add("partially-fixed-1");
-      document.getElementById("nav-bar").classList.remove("partially-fixed-2");
     } else {
-      document.getElementById("nav-bar").classList.remove("fixed");
-      document.getElementById("nav-bar").classList.remove("partially-fixed-1");
-      document.getElementById("nav-bar").classList.remove("partially-fixed-2");
+      if (event.srcElement.body.scrollTop > pageHeight - 100) {
+        document.getElementById("nav-bar").classList.add("fixed");
+        document.getElementById("nav-bar").classList.remove("partially-fixed-1");
+        document.getElementById("nav-bar").classList.remove("partially-fixed-2");
+      } else if (event.srcElement.body.scrollTop > pageHeight/2) {
+        document.getElementById("nav-bar").classList.remove("fixed");
+        document.getElementById("nav-bar").classList.remove("partially-fixed-1");
+        document.getElementById("nav-bar").classList.add("partially-fixed-2");
+      } else if (event.srcElement.body.scrollTop > 100) {
+        document.getElementById("nav-bar").classList.remove("fixed");
+        document.getElementById("nav-bar").classList.add("partially-fixed-1");
+        document.getElementById("nav-bar").classList.remove("partially-fixed-2");
+      } else {
+        document.getElementById("nav-bar").classList.remove("fixed");
+        document.getElementById("nav-bar").classList.remove("partially-fixed-1");
+        document.getElementById("nav-bar").classList.remove("partially-fixed-2");
+      }
     }
 
     if (this.lastScroll <= ((new Date()).getTime() - this.scrollOffset) && curPage !== this.state.active_page) {
@@ -516,15 +522,23 @@ resize();
 
 window.onresize = function(event) {
   resize();
+  ReactDOM.render(<Quotes />, document.querySelector("#quotes"));
 };
 
 function resize() {
+  if (window.innerWidth < 900) {
+    document.getElementById("nav-bar").classList.add("fixed");
+    document.getElementById("nav-bar").classList.remove("partially-fixed-1");
+    document.getElementById("nav-bar").classList.remove("partially-fixed-2");
+  }
+
   var bios = document.getElementsByClassName('bio');
   Array.prototype.forEach.call(bios, function(elements, index) {
-    var bioheight = document.getElementsByClassName('bio')[index].offsetHeight;
+    var bioheight = document.getElementsByClassName('team-member')[index].offsetHeight;
     var hexheight = document.getElementsByClassName('headshot')[index].height.baseVal.value;
   
-    document.getElementsByClassName('headshot')[index].style.marginTop = (hexheight - bioheight)/-2;
+    document.getElementsByClassName('headshot')[index].style.marginTop = (hexheight - bioheight)/-2 + "px";
+    document.getElementsByClassName('bio')[index].style.height = bioheight + 20 + "px";
   });
   
   var sponsor_bios = document.getElementsByClassName('sponsor-bio');
@@ -533,6 +547,6 @@ function resize() {
     var hexwidth = document.getElementsByClassName('sponsor-headshot')[index].width.baseVal.value;
     var hexleft = document.getElementsByClassName('sponsor-headshot')[index].getBoundingClientRect().x;
   
-    document.getElementsByClassName('sponsor-bio')[index].style.left = (hexwidth - biowidth)/2 + (hexleft - (window.innerWidth/2)) + "px";
+    document.getElementsByClassName('sponsor-bio')[index].style.left = (hexwidth - biowidth)/2 + (hexleft - (window.innerWidth >= 900 ? (window.innerWidth/2) : 0)) + "px";
   });  
 }
