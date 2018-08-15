@@ -303,14 +303,16 @@ body, html {
   z-index: 999;
   top: 0px;
   right: 0px;
-  width: 55px;
-  height: 55px;
-  margin: 10px 15px;
+  width: 45px;
+  height: 45px;
+  margin: 18px 18px;
   cursor: pointer;
+  display: none;
 }
 
 #nav-bar #nav-items .hamburger hr {
   width: 100%;
+  margin: 5px 0px;
   border: none;
   background: #002060;
   height: 3px;
@@ -914,6 +916,9 @@ body, html {
   .nav-item.expand:nth-of-type(5) {
     border-bottom: 3px solid #1D396B !important;
     padding-bottom: 50px;
+  }
+  .hamburger {
+    display: block !important;
   }
   .bios {
     margin-left: calc(50vw - 115px) !important;
