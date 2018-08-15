@@ -1,7 +1,7 @@
 $title-font: Copperplate;
-$header-font: Hiragino Kaku Gothic Pro;
-$header-font-alt: Hiragino Maru Gothic ProN;
-$header-font-bold: Hiragino Kaku Gothic StdN;
+$header-font: Hiragino Kaku Gothic Pro, AppleGothic;
+$header-font-alt: Hiragino Maru Gothic ProN, AppleGothic;
+$header-font-bold: Hiragino Kaku Gothic StdN, AppleGothic;
 $paragraph-font: AppleGothic;
 
 $primary-color: #002060;
@@ -55,6 +55,13 @@ $navbar-height: 75px;
     -ms-user-select: $option;
     -webkit-user-select: $option;
     user-select: $option;
+}
+
+@mixin tap-highlight-color($option) {
+    -webkit-tap-highlight-color: $option;
+    -o-tap-highlight-color: $option;
+    -ms-tap-highlight-color: $option;
+    -moz-tap-highlight-color: $option;
 }
 
 @mixin center {
@@ -164,9 +171,12 @@ body, html {
 
     #icon {
         width: 28px;
+        height: 28px;
         margin: $navbar-height/2 - 14px;
         margin-right: 0px;
-        content: url("images/logo_white.png");
+        background-image: url("images/logo_white.png");
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 
     #title {
@@ -192,6 +202,9 @@ body, html {
             color: $tertiary-color;
             cursor: pointer;
             @include transition(all 0.5s);
+            @include user-select(none);
+            @include tap-highlight-color(transparent);
+            outline-style: none;
 
             .fixed {
                 color: $primary-color;
@@ -214,6 +227,24 @@ body, html {
                 fill: $primary-color;
             }
         }
+
+        .hamburger {
+            position: fixed;
+            z-index: 999;
+            top: 0px;
+            right: 0px;
+            width: 55px;
+            height: 55px;
+            margin: 10px 15px;
+            cursor: pointer;
+
+            hr {
+                width: 100%;
+                border: none;
+                background: $primary-color;
+                height: 3px;
+            }
+        }
     }
 
     &.partially-fixed-1 {
@@ -221,7 +252,7 @@ body, html {
         top: -100px;
 
         #icon {
-            content: url("images/logo_white.png");
+            background-image: url("images/logo_white.png");
         }
     }
 
@@ -230,7 +261,7 @@ body, html {
         top: -100px;
 
         #icon {
-            content: url("images/logo.png");
+            background-image: url("images/logo.png");
         }
     }
 
@@ -241,7 +272,7 @@ body, html {
         border-bottom: 3px solid $background-color;
 
         #icon {
-            content: url("images/logo.png");
+            background-image: url("images/logo.png");
         }
 
         #title {
@@ -377,6 +408,7 @@ body, html {
 #mission {
     background: $background-color;
     position: relative;
+    overflow: hidden;
 
     .text {
         color: #FFFFFFFF;
@@ -393,6 +425,7 @@ body, html {
         font-style: italic;
         font-size: 15px;
         color: #FFFFFF80;
+        width: auto;
     }
 
     #quotes {
@@ -529,6 +562,8 @@ body, html {
 }
 
 #teamParagraph {
+    overflow: hidden;
+
     .headshot {
         width: 150px;
         float: left;
@@ -537,10 +572,16 @@ body, html {
     .bio {
         display: block;
         clear: both;
-        margin: 50px 0px;
+        margin: 30px 0px;
         font-size: 0.9em;
         line-height: 140%;
-        color: #00000050;
+        overflow: visible;
+
+        .group {
+            float: left;
+            width: calc(100% - 153px);
+            overflow: auto;
+        }
 
         .headshot {
             margin-right: 10px;
@@ -560,7 +601,8 @@ body, html {
             font-style: italic;
             padding-top: 4px;
             padding-bottom: 3px;
-            color: #00000038;
+            color: #00000050;
+            text-align: left;
         }
 
         .text {
@@ -588,9 +630,33 @@ body, html {
         .row {
             position: relative;
             overflow: auto;
+            overflow-x: hidden;
+            display: flex;
+
             .headshot {
                 margin-right: -5px;
                 float: left;
+                margin-bottom: 10px;
+            }
+
+            .sponsor-group {
+                .title {
+                    font-family: $paragraph-font;
+                    font-weight: 100;
+                    font-size: 1.3em;
+                    color: #00000090;
+                    text-align: center;
+                    margin: 10px 0px;
+
+                    .sub {
+                        font-size: 0.75em;
+                        color: #00000060;
+                    }
+                }
+
+                .subtitle {
+                    text-align: center;
+                }
             }
         }
 
@@ -606,7 +672,6 @@ body, html {
         overflow: auto;
 
         .group {
-            position: absolute;
             width: 140px;
             text-align: center;
 
@@ -706,6 +771,119 @@ body, html {
     #teamParagraph {
         width: 580px;
         padding-right: calc(50vw - 610px);
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .bio {
+        margin: 100px 0px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .team-member {
+        .position {
+            clear: both;
+            margin-top: 3px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .half {
+        width: calc(100% - 60px) !important;
+        left: 0% !important;
+        margin-left: 0px !important;
+    }
+
+    .blue {
+        position: relative !important;
+        display: none !important;
+    }
+
+    .white {
+        padding-top: 50px !important;
+    }
+
+    #scroll-hex, .nav-hex {
+        display: none;
+    }
+
+    #hook {
+        font-size: 25px !important;
+        width: 450px;
+    }
+
+    #mission .text {
+        width: calc(100% - 100px) !important;
+    }
+
+    #mission #author {
+        display: none;
+    }
+
+    .nav-item {
+        width: 100vw !important;
+        margin: 0px !important;
+        margin-top: 0px !important;
+        padding: 0px;
+        background-color: $tertiary-color !important;
+        height: 0px;
+        overflow: hidden;
+    }
+
+    .nav-item.expand {
+        padding: 25px 0px;
+    }
+
+    .nav-item.expand:nth-of-type(5){
+        border-bottom: 3px solid $background-color !important;
+        padding-bottom: 50px;
+    }
+
+    .bios {
+        margin-left: calc(50vw - 115px) !important;
+
+        .sponsor-headshot {
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+    }
+
+    .row {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #hook {
+        font-size: 20px !important;
+        color: #FFFFFFA0 !important;
+        width: 90% !important;
+    }
+
+    #mission .text {
+        font-size: 16px !important;
+    }
+
+    .bio {
+        display: flex !important;
+        flex-direction: column;
+        height: auto !important;
+
+        .headshot {
+            margin-bottom: 10px;
+            margin-left: 0px !important;
+        }
+
+        .team-member {
+            width: 100% !important;
+        }
+    }
+
+    #hexagons {
+        opacity: 0.5 !important;
     }
 }
 

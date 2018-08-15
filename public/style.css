@@ -229,9 +229,12 @@ body, html {
 
 #nav-bar #icon {
   width: 28px;
+  height: 28px;
   margin: 23.5px;
   margin-right: 0px;
-  content: url("images/logo_white.png");
+  background-image: url("images/logo_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 #nav-bar #title {
@@ -252,7 +255,7 @@ body, html {
 
 #nav-bar #nav-items .nav-item {
   border: none;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   font-size: 20px;
   background: none;
   margin-top: 20.5px;
@@ -261,6 +264,16 @@ body, html {
   cursor: pointer;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -o-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  outline-style: none;
 }
 
 #nav-bar #nav-items .nav-item .fixed {
@@ -285,13 +298,31 @@ body, html {
   fill: #002060;
 }
 
+#nav-bar #nav-items .hamburger {
+  position: fixed;
+  z-index: 999;
+  top: 0px;
+  right: 0px;
+  width: 55px;
+  height: 55px;
+  margin: 10px 15px;
+  cursor: pointer;
+}
+
+#nav-bar #nav-items .hamburger hr {
+  width: 100%;
+  border: none;
+  background: #002060;
+  height: 3px;
+}
+
 #nav-bar.partially-fixed-1 {
   position: absolute;
   top: -100px;
 }
 
 #nav-bar.partially-fixed-1 #icon {
-  content: url("images/logo_white.png");
+  background-image: url("images/logo_white.png");
 }
 
 #nav-bar.partially-fixed-2 {
@@ -300,7 +331,7 @@ body, html {
 }
 
 #nav-bar.partially-fixed-2 #icon {
-  content: url("images/logo.png");
+  background-image: url("images/logo.png");
 }
 
 #nav-bar.fixed {
@@ -311,7 +342,7 @@ body, html {
 }
 
 #nav-bar.fixed #icon {
-  content: url("images/logo.png");
+  background-image: url("images/logo.png");
 }
 
 #nav-bar.fixed #title {
@@ -349,7 +380,7 @@ body, html {
 #scroll-hex #scroll-container #arrow {
   color: #1D396B;
   font-size: 40px;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   position: absolute;
   position: absolute;
   left: 50%;
@@ -468,6 +499,7 @@ body, html {
 #mission {
   background: #1D396B;
   position: relative;
+  overflow: hidden;
 }
 
 #mission .text {
@@ -489,6 +521,7 @@ body, html {
   font-style: italic;
   font-size: 15px;
   color: #FFFFFF80;
+  width: auto;
 }
 
 #mission #quotes .quote-container {
@@ -497,7 +530,7 @@ body, html {
 
 #mission #quotes .actual-quote {
   color: #1D396B;
-  font-family: Hiragino Maru Gothic ProN;
+  font-family: Hiragino Maru Gothic ProN, AppleGothic;
   font-size: 200px;
   position: absolute;
   top: -34px;
@@ -525,7 +558,7 @@ body, html {
   background-color: #1D396B;
   color: #ffffff;
   text-align: center;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   font-size: 22.5px;
 }
 
@@ -569,7 +602,7 @@ body, html {
 }
 
 .split .half.white .title {
-  font-family: Hiragino Kaku Gothic StdN;
+  font-family: Hiragino Kaku Gothic StdN, AppleGothic;
   font-weight: 900;
   color: #1D396B;
   font-size: 30px;
@@ -612,6 +645,10 @@ body, html {
   left: 50%;
 }
 
+#teamParagraph {
+  overflow: hidden;
+}
+
 #teamParagraph .headshot {
   width: 150px;
   float: left;
@@ -620,10 +657,16 @@ body, html {
 #teamParagraph .bio {
   display: block;
   clear: both;
-  margin: 50px 0px;
+  margin: 30px 0px;
   font-size: 0.9em;
   line-height: 140%;
-  color: #00000050;
+  overflow: visible;
+}
+
+#teamParagraph .bio .group {
+  float: left;
+  width: calc(100% - 153px);
+  overflow: auto;
 }
 
 #teamParagraph .bio .headshot {
@@ -637,14 +680,15 @@ body, html {
   display: block;
   margin-right: 4px;
   color: #00000090;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
 }
 
 #teamParagraph .bio .position {
   font-style: italic;
   padding-top: 4px;
   padding-bottom: 3px;
-  color: #00000038;
+  color: #00000050;
+  text-align: left;
 }
 
 #teamParagraph .bio .text {
@@ -670,11 +714,34 @@ body, html {
 #teamParagraph .bios .row {
   position: relative;
   overflow: auto;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 #teamParagraph .bios .row .headshot {
   margin-right: -5px;
   float: left;
+  margin-bottom: 10px;
+}
+
+#teamParagraph .bios .row .sponsor-group .title {
+  font-family: AppleGothic;
+  font-weight: 100;
+  font-size: 1.3em;
+  color: #00000090;
+  text-align: center;
+  margin: 10px 0px;
+}
+
+#teamParagraph .bios .row .sponsor-group .title .sub {
+  font-size: 0.75em;
+  color: #00000060;
+}
+
+#teamParagraph .bios .row .sponsor-group .subtitle {
+  text-align: center;
 }
 
 #teamParagraph .bios .second-row {
@@ -688,7 +755,6 @@ body, html {
 }
 
 #teamParagraph .bio-titles .group {
-  position: absolute;
   width: 140px;
   text-align: center;
 }
@@ -696,7 +762,7 @@ body, html {
 #teamParagraph .bio-titles .group .title {
   font-size: 1.1em;
   color: #00000090;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   font-weight: normal;
   margin-bottom: 5px;
 }
@@ -790,6 +856,108 @@ body, html {
   #teamParagraph {
     width: 580px;
     padding-right: calc(50vw - 610px);
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .bio {
+    margin: 100px 0px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .team-member .position {
+    clear: both;
+    margin-top: 3px;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .half {
+    width: calc(100% - 60px) !important;
+    left: 0% !important;
+    margin-left: 0px !important;
+  }
+  .blue {
+    position: relative !important;
+    display: none !important;
+  }
+  .white {
+    padding-top: 50px !important;
+  }
+  #scroll-hex, .nav-hex {
+    display: none;
+  }
+  #hook {
+    font-size: 25px !important;
+    width: 450px;
+  }
+  #mission .text {
+    width: calc(100% - 100px) !important;
+  }
+  #mission #author {
+    display: none;
+  }
+  .nav-item {
+    width: 100vw !important;
+    margin: 0px !important;
+    margin-top: 0px !important;
+    padding: 0px;
+    background-color: #ffffff !important;
+    height: 0px;
+    overflow: hidden;
+  }
+  .nav-item.expand {
+    padding: 25px 0px;
+  }
+  .nav-item.expand:nth-of-type(5) {
+    border-bottom: 3px solid #1D396B !important;
+    padding-bottom: 50px;
+  }
+  .bios {
+    margin-left: calc(50vw - 115px) !important;
+  }
+  .bios .sponsor-headshot {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #hook {
+    font-size: 20px !important;
+    color: #FFFFFFA0 !important;
+    width: 90% !important;
+  }
+  #mission .text {
+    font-size: 16px !important;
+  }
+  .bio {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: auto !important;
+  }
+  .bio .headshot {
+    margin-bottom: 10px;
+    margin-left: 0px !important;
+  }
+  .bio .team-member {
+    width: 100% !important;
+  }
+  #hexagons {
+    opacity: 0.5 !important;
   }
 }
 
