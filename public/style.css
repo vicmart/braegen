@@ -229,9 +229,12 @@ body, html {
 
 #nav-bar #icon {
   width: 28px;
+  height: 28px;
   margin: 23.5px;
   margin-right: 0px;
-  content: url("images/logo_white.png");
+  background-image: url("images/logo_white.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 #nav-bar #title {
@@ -252,7 +255,7 @@ body, html {
 
 #nav-bar #nav-items .nav-item {
   border: none;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   font-size: 20px;
   background: none;
   margin-top: 20.5px;
@@ -261,6 +264,16 @@ body, html {
   cursor: pointer;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -o-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  outline-style: none;
 }
 
 #nav-bar #nav-items .nav-item .fixed {
@@ -291,7 +304,7 @@ body, html {
 }
 
 #nav-bar.partially-fixed-1 #icon {
-  content: url("images/logo_white.png");
+  background-image: url("images/logo_white.png");
 }
 
 #nav-bar.partially-fixed-2 {
@@ -300,7 +313,7 @@ body, html {
 }
 
 #nav-bar.partially-fixed-2 #icon {
-  content: url("images/logo.png");
+  background-image: url("images/logo.png");
 }
 
 #nav-bar.fixed {
@@ -311,7 +324,7 @@ body, html {
 }
 
 #nav-bar.fixed #icon {
-  content: url("images/logo.png");
+  background-image: url("images/logo.png");
 }
 
 #nav-bar.fixed #title {
@@ -349,7 +362,7 @@ body, html {
 #scroll-hex #scroll-container #arrow {
   color: #1D396B;
   font-size: 40px;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   position: absolute;
   position: absolute;
   left: 50%;
@@ -468,6 +481,7 @@ body, html {
 #mission {
   background: #1D396B;
   position: relative;
+  overflow: hidden;
 }
 
 #mission .text {
@@ -498,7 +512,7 @@ body, html {
 
 #mission #quotes .actual-quote {
   color: #1D396B;
-  font-family: Hiragino Maru Gothic ProN;
+  font-family: Hiragino Maru Gothic ProN, AppleGothic;
   font-size: 200px;
   position: absolute;
   top: -34px;
@@ -526,7 +540,7 @@ body, html {
   background-color: #1D396B;
   color: #ffffff;
   text-align: center;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   font-size: 22.5px;
 }
 
@@ -570,7 +584,7 @@ body, html {
 }
 
 .split .half.white .title {
-  font-family: Hiragino Kaku Gothic StdN;
+  font-family: Hiragino Kaku Gothic StdN, AppleGothic;
   font-weight: 900;
   color: #1D396B;
   font-size: 30px;
@@ -613,6 +627,10 @@ body, html {
   left: 50%;
 }
 
+#teamParagraph {
+  overflow: hidden;
+}
+
 #teamParagraph .headshot {
   width: 150px;
   float: left;
@@ -624,7 +642,6 @@ body, html {
   margin: 30px 0px;
   font-size: 0.9em;
   line-height: 140%;
-  color: #00000050;
   overflow: visible;
 }
 
@@ -645,14 +662,14 @@ body, html {
   display: block;
   margin-right: 4px;
   color: #00000090;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
 }
 
 #teamParagraph .bio .position {
   font-style: italic;
   padding-top: 4px;
   padding-bottom: 3px;
-  color: #00000038;
+  color: #00000050;
   text-align: left;
 }
 
@@ -679,11 +696,34 @@ body, html {
 #teamParagraph .bios .row {
   position: relative;
   overflow: auto;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 #teamParagraph .bios .row .headshot {
   margin-right: -5px;
   float: left;
+  margin-bottom: 10px;
+}
+
+#teamParagraph .bios .row .sponsor-group .title {
+  font-family: AppleGothic;
+  font-weight: 100;
+  font-size: 1.3em;
+  color: #00000090;
+  text-align: center;
+  margin: 10px 0px;
+}
+
+#teamParagraph .bios .row .sponsor-group .title .sub {
+  font-size: 0.75em;
+  color: #00000060;
+}
+
+#teamParagraph .bios .row .sponsor-group .subtitle {
+  text-align: center;
 }
 
 #teamParagraph .bios .second-row {
@@ -697,7 +737,6 @@ body, html {
 }
 
 #teamParagraph .bio-titles .group {
-  position: absolute;
   width: 140px;
   text-align: center;
 }
@@ -705,7 +744,7 @@ body, html {
 #teamParagraph .bio-titles .group .title {
   font-size: 1.1em;
   color: #00000090;
-  font-family: Hiragino Kaku Gothic Pro;
+  font-family: Hiragino Kaku Gothic Pro, AppleGothic;
   font-weight: normal;
   margin-bottom: 5px;
 }
@@ -853,6 +892,50 @@ body, html {
   }
   .nav-item:nth-of-type(5) {
     border-bottom: 3px solid #1D396B !important;
+  }
+  .bios {
+    margin-left: calc(50vw - 105px) !important;
+  }
+  .bios .sponsor-headshot {
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+  .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #hook {
+    font-size: 20px !important;
+    color: #FFFFFFA0 !important;
+    width: 90% !important;
+  }
+  #mission .text {
+    font-size: 16px !important;
+  }
+  .bio {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: auto !important;
+  }
+  .bio .headshot {
+    margin-bottom: 10px;
+    margin-left: 0px !important;
+  }
+  .bio .team-member {
+    width: 100% !important;
+  }
+  #hexagons {
+    opacity: 0.5 !important;
   }
 }
 

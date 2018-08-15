@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {animateScroll as scroll} from "react-scroll";
 
-function getCurPage(event) {
-  let scrollTop = event.srcElement.body.scrollTop;
+function getCurPage(scrollTop) {
   let curPage = 0;
   let curHeight = document.getElementsByClassName("page")[0].offsetHeight;
 
@@ -15,9 +14,7 @@ function getCurPage(event) {
   return curPage;
 }
 
-function getExactCurPage(event) {
-  let scrollTop = event.srcElement.body.scrollTop;
-
+function getExactCurPage(scrollTop) {
   for (var i = 0; i < document.getElementsByClassName("page").length; i++) {
     if (scrollTop > document.getElementsByClassName("page")[i].offsetTop && scrollTop < document.getElementsByClassName("page")[i].offsetTop + document.getElementsByClassName("page")[i].offsetHeight - window.innerHeight) {
       return i;
@@ -27,8 +24,7 @@ function getExactCurPage(event) {
   return -1;
 }
 
-function getHalfCurPage(event) {
-  let scrollTop = event.srcElement.body.scrollTop;
+function getHalfCurPage(scrollTop) {
   let curPage = 0;
   let curHeight = document.getElementsByClassName("page")[0].offsetHeight;
 
@@ -276,7 +272,11 @@ class NavBar extends React.Component {
   }
 
   handleScroll(event) {
-    let curPage = getCurPage(event);
+    event = event || window.event;
+    var target = event.target || event.srcElement;
+    var scrollTopVal = target.scrollingElement.scrollTop;
+
+    let curPage = getCurPage(scrollTopVal);
     let pageHeight = document.getElementsByClassName("page")[0].offsetHeight;
 
     if (window.innerWidth < 900) {
@@ -284,15 +284,15 @@ class NavBar extends React.Component {
       document.getElementById("nav-bar").classList.remove("partially-fixed-1");
       document.getElementById("nav-bar").classList.remove("partially-fixed-2");
     } else {
-      if (event.srcElement.body.scrollTop > pageHeight - 100) {
+      if (scrollTopVal > pageHeight - 100) {
         document.getElementById("nav-bar").classList.add("fixed");
         document.getElementById("nav-bar").classList.remove("partially-fixed-1");
         document.getElementById("nav-bar").classList.remove("partially-fixed-2");
-      } else if (event.srcElement.body.scrollTop > pageHeight/2) {
+      } else if (scrollTopVal > pageHeight/2) {
         document.getElementById("nav-bar").classList.remove("fixed");
         document.getElementById("nav-bar").classList.remove("partially-fixed-1");
         document.getElementById("nav-bar").classList.add("partially-fixed-2");
-      } else if (event.srcElement.body.scrollTop > 100) {
+      } else if (scrollTopVal > 100) {
         document.getElementById("nav-bar").classList.remove("fixed");
         document.getElementById("nav-bar").classList.add("partially-fixed-1");
         document.getElementById("nav-bar").classList.remove("partially-fixed-2");
@@ -431,7 +431,11 @@ class ScrollHex extends React.Component {
   }
 
   handleScroll(event) {
-    let curPage = getCurPage(event);
+    event = event || window.event;
+    var target = event.target || event.srcElement;
+    var scrollTopVal = target.scrollingElement.scrollTop;
+
+    let curPage = getCurPage(scrollTopVal);
     
     if (curPage !== this.state.curPage) {
       this.setState({
@@ -439,17 +443,17 @@ class ScrollHex extends React.Component {
       });
     } 
 
-    let exactCurPage = getExactCurPage(event);
-    let halfCurPage = getHalfCurPage(event);
+    let exactCurPage = getExactCurPage(scrollTopVal);
+    let halfCurPage = getHalfCurPage(scrollTopVal);
     if (exactCurPage === 2) {
       document.querySelector("#impactText").classList.add("fixing");
       this.setState({
-        scrollOffset: (event.srcElement.body.scrollTop - document.querySelector("#impact").offsetTop)
+        scrollOffset: (scrollTopVal - document.querySelector("#impact").offsetTop)
       });
     } else if (exactCurPage === 3) {
       document.querySelector("#teamText").classList.add("fixing");
       this.setState({
-        scrollOffset: (event.srcElement.body.scrollTop - document.querySelector("#team").offsetTop)
+        scrollOffset: (scrollTopVal - document.querySelector("#team").offsetTop)
       });
     } else {
       this.setState({
@@ -535,18 +539,11 @@ function resize() {
   var bios = document.getElementsByClassName('bio');
   Array.prototype.forEach.call(bios, function(elements, index) {
     var bioheight = document.getElementsByClassName('team-member')[index].offsetHeight;
-    var hexheight = document.getElementsByClassName('headshot')[index].height.baseVal.value;
+    var hexheight = 150;
   
     document.getElementsByClassName('headshot')[index].style.marginTop = (hexheight - bioheight)/-2 + "px";
-    document.getElementsByClassName('bio')[index].style.height = bioheight + 20 + "px";
+    if (window.innerWidth > 900) {
+      document.getElementsByClassName('bio')[index].style.height = bioheight + 20 + "px";
+    }
   });
-  
-  var sponsor_bios = document.getElementsByClassName('sponsor-bio');
-  Array.prototype.forEach.call(sponsor_bios, function(elements, index) {
-    var biowidth = document.getElementsByClassName('sponsor-bio')[index].offsetWidth;
-    var hexwidth = document.getElementsByClassName('sponsor-headshot')[index].width.baseVal.value;
-    var hexleft = document.getElementsByClassName('sponsor-headshot')[index].getBoundingClientRect().x;
-  
-    document.getElementsByClassName('sponsor-bio')[index].style.left = (hexwidth - biowidth)/2 + (hexleft - (window.innerWidth >= 900 ? (window.innerWidth/2) : 0)) + "px";
-  });  
 }
