@@ -227,6 +227,24 @@ body, html {
                 fill: $primary-color;
             }
         }
+
+        .hamburger {
+            position: fixed;
+            z-index: 999;
+            top: 0px;
+            right: 0px;
+            width: 55px;
+            height: 55px;
+            margin: 10px 15px;
+            cursor: pointer;
+
+            hr {
+                width: 100%;
+                border: none;
+                background: $primary-color;
+                height: 3px;
+            }
+        }
     }
 
     &.partially-fixed-1 {
@@ -784,7 +802,11 @@ body, html {
         display: none !important;
     }
 
-    #scroll-hex {
+    .white {
+        padding-top: 50px !important;
+    }
+
+    #scroll-hex, .nav-hex {
         display: none;
     }
 
@@ -794,7 +816,7 @@ body, html {
     }
 
     #mission .text {
-        width: calc(100% - 150px) !important;
+        width: calc(100% - 100px) !important;
     }
 
     #mission #author {
@@ -808,19 +830,20 @@ body, html {
         padding: 0px;
         background-color: $tertiary-color !important;
         height: 0px;
+        overflow: hidden;
     }
 
     .nav-item.expand {
         padding: 25px 0px;
-        height: 0px;
     }
 
-    .nav-item:nth-of-type(5){
+    .nav-item.expand:nth-of-type(5){
         border-bottom: 3px solid $background-color !important;
+        padding-bottom: 50px;
     }
 
     .bios {
-        margin-left: calc(50vw - 105px) !important;
+        margin-left: calc(50vw - 115px) !important;
 
         .sponsor-headshot {
             margin-left: 10px;

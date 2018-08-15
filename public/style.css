@@ -298,6 +298,24 @@ body, html {
   fill: #002060;
 }
 
+#nav-bar #nav-items .hamburger {
+  position: fixed;
+  z-index: 999;
+  top: 0px;
+  right: 0px;
+  width: 55px;
+  height: 55px;
+  margin: 10px 15px;
+  cursor: pointer;
+}
+
+#nav-bar #nav-items .hamburger hr {
+  width: 100%;
+  border: none;
+  background: #002060;
+  height: 3px;
+}
+
 #nav-bar.partially-fixed-1 {
   position: absolute;
   top: -100px;
@@ -865,7 +883,10 @@ body, html {
     position: relative !important;
     display: none !important;
   }
-  #scroll-hex {
+  .white {
+    padding-top: 50px !important;
+  }
+  #scroll-hex, .nav-hex {
     display: none;
   }
   #hook {
@@ -873,7 +894,7 @@ body, html {
     width: 450px;
   }
   #mission .text {
-    width: calc(100% - 150px) !important;
+    width: calc(100% - 100px) !important;
   }
   #mission #author {
     display: none;
@@ -885,16 +906,17 @@ body, html {
     padding: 0px;
     background-color: #ffffff !important;
     height: 0px;
+    overflow: hidden;
   }
   .nav-item.expand {
     padding: 25px 0px;
-    height: 0px;
   }
-  .nav-item:nth-of-type(5) {
+  .nav-item.expand:nth-of-type(5) {
     border-bottom: 3px solid #1D396B !important;
+    padding-bottom: 50px;
   }
   .bios {
-    margin-left: calc(50vw - 105px) !important;
+    margin-left: calc(50vw - 115px) !important;
   }
   .bios .sponsor-headshot {
     margin-left: 10px;

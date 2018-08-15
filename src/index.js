@@ -269,6 +269,8 @@ class NavBar extends React.Component {
       active_page: num,
       hover_page: num 
     });
+
+    toggleNav();
   }
 
   handleScroll(event) {
@@ -333,7 +335,7 @@ class NavBar extends React.Component {
 
     //left += (hover - active) * 10;
     
-    return <Hexagon size={size} opacity={opacity} pos={[left, 0]} animated={false} />;
+    return <Hexagon size={size} opacity={opacity} pos={[left, 0]} animated={false} className="nav-hex" />;
   }
 
   render() {
@@ -346,6 +348,11 @@ class NavBar extends React.Component {
         {this.renderNavItem("People", this.state.active_page)}
         {this.renderNavItem("Contact", this.state.active_page)}
         {this.renderHexagon(25, 90)}
+        <div class="hamburger" id="hamburger">
+          <hr noshade/>
+          <hr noshade/>
+          <hr noshade/>
+        </div>
       </div>
     );
   }
@@ -544,6 +551,21 @@ function resize() {
     document.getElementsByClassName('headshot')[index].style.marginTop = (hexheight - bioheight)/-2 + "px";
     if (window.innerWidth > 900) {
       document.getElementsByClassName('bio')[index].style.height = bioheight + 20 + "px";
+    }
+  });
+}
+
+document.getElementById("hamburger").onclick = function (oEvent) {
+  toggleNav();
+}
+
+function toggleNav() {
+  var navs = document.getElementsByClassName('nav-item');
+  Array.prototype.forEach.call(navs, function(elements, index) {
+    if (document.getElementsByClassName('nav-item')[index].classList.contains("expand")) {
+      document.getElementsByClassName('nav-item')[index].classList.remove("expand");      
+    } else {
+      document.getElementsByClassName('nav-item')[index].classList.add("expand");      
     }
   });
 }
