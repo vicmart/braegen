@@ -223,7 +223,7 @@ class HexagonGraphs extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="graphs">
         {this.renderHexagon(this.props.size, 100, false, "first")}
         {this.renderHexagon(this.props.size, 100, false, "second")}
       </div>
@@ -348,10 +348,10 @@ class NavBar extends React.Component {
         {this.renderNavItem("People", this.state.active_page)}
         {this.renderNavItem("Contact", this.state.active_page)}
         {this.renderHexagon(25, 90)}
-        <div class="hamburger" id="hamburger">
-          <hr noshade/>
-          <hr noshade/>
-          <hr noshade/>
+        <div className="hamburger" id="hamburger">
+          <hr noshade="true" />
+          <hr noshade="true" />
+          <hr noshade="true" />
         </div>
       </div>
     );
@@ -527,7 +527,7 @@ ReactDOM.render(<ScrollHex />, document.querySelector("#scroll-hex"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline1"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline2"));
 ReactDOM.render(<HexagonButton size={120}/>, document.querySelector("#hexagon-button"));
-//ReactDOM.render(<HexagonGraphs size={90}/>, document.querySelector("#hexagon-graphs"));
+ReactDOM.render(<HexagonGraphs size={90}/>, document.querySelector("#hexagon-graphs"));
 
 resize();
 
@@ -569,3 +569,60 @@ function toggleNav() {
     }
   });
 }
+
+function animateGraph(percent, graph) {
+  percent = Math.min(percent, 100);
+
+  var raw_points = document.getElementsByClassName("graphs")[0].childNodes[graph].childNodes[0].childNodes[0].attributes.points.value.split(" ");
+  var pointsX = [];
+  var pointsY = [];
+
+  for (var i = 0; i < raw_points.length - 1; i++) {
+    var raw_point = raw_points[i].split(",");
+    pointsX.push(parseInt(raw_point[0]));
+    pointsY.push(parseInt(raw_point[1]));
+  }
+
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  var centerX = pointsX.reduce(reducer) / pointsX.length;
+  var centerY = pointsY.reduce(reducer) / pointsY.length;
+
+  console.log(pointsX);
+  console.log(pointsY);
+  console.log(centerX);
+  console.log(centerY);
+  
+  var fullVertexUpTo = parseInt(percent / 16.6666);
+  var curVertex = 0;
+
+  var result_string = " ";
+
+  while (curVertex <= fullVertexUpTo) {
+    result_string += pointsX[curVertex] + "," + pointsY[curVertex] + " ";
+    curVertex++;
+  }
+
+  curVertex--;
+  
+  var diffX = pointsX[(curVertex + 1) % pointsX.length] - pointsX[curVertex];
+  var diffY = pointsY[(curVertex + 1) % pointsX.length] - pointsY[curVertex];
+
+  var partialVertex = percent % 16.6666;
+
+  var newX = (diffX * (partialVertex/16.6666)) + pointsX[curVertex];
+  var newY = (diffY * (partialVertex/16.6666)) + pointsY[curVertex];
+  result_string += newX + "," + newY + " ";
+
+  result_string += centerX + "," + centerY + " ";
+  result_string += pointsX[0] + "," + pointsY[0] + " ";
+
+  document.getElementsByClassName("graphs")[0].childNodes[0].childNodes[0].childNodes[0].attributes.points.value = result_string;
+}
+
+var newParent1 = document.getElementById('hexagon-graphs').childNodes[0].childNodes[0];
+var newParent2 = document.getElementById('hexagon-graphs').childNodes[0].childNodes[1];
+var graphText1 = document.getElementById('graph-text-1');
+var graphText2 = document.getElementById('graph-text-2');
+
+newParent1.appendChild(graphText1);
+newParent2.appendChild(graphText2);
