@@ -262,7 +262,13 @@ class NavBar extends React.Component {
 
   handleClick(num) {
     let pageHeight = document.getElementsByClassName("page")[num].offsetTop;
-    scroll.scrollTo(pageHeight);
+
+    if (window.innerWidth > 900) {
+      scroll.scrollTo(pageHeight);
+    } else {
+      scroll.scrollTo(pageHeight - 50);
+    }
+
     this.lastScroll = (new Date()).getTime();
     
     this.setState({ 
@@ -305,6 +311,18 @@ class NavBar extends React.Component {
       }
     }
 
+    var paragraphs = document.getElementsByClassName('paragraph');
+    var index = 0;
+    while (index < paragraphs.length && scrollTopVal > getOffset(paragraphs[index]).top - (window.innerHeight * 0.66)) {
+      paragraphs[index].classList.add("show-paragraph");
+      index++;
+    }
+
+    while (index < paragraphs.length) {
+      paragraphs[index].classList.remove("show-paragraph");
+      index++;
+    }
+    
     if (this.lastScroll <= ((new Date()).getTime() - this.scrollOffset) && curPage !== this.state.active_page) {
       this.setState({
         active_page: curPage,
@@ -586,11 +604,6 @@ function animateGraph(percent, graph) {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   var centerX = pointsX.reduce(reducer) / pointsX.length;
   var centerY = pointsY.reduce(reducer) / pointsY.length;
-
-  console.log(pointsX);
-  console.log(pointsY);
-  console.log(centerX);
-  console.log(centerY);
   
   var fullVertexUpTo = parseInt(percent / 16.6666);
   var curVertex = 0;
@@ -626,3 +639,11 @@ var graphText2 = document.getElementById('graph-text-2');
 
 newParent1.appendChild(graphText1);
 newParent2.appendChild(graphText2);
+
+function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  };
+}
