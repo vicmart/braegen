@@ -683,6 +683,11 @@ body, html {
   color: #FFFFFF70;
 }
 
+#impactText {
+  -webkit-transition: none;
+  transition: none;
+}
+
 #impactText.higher {
   position: absolute;
   bottom: 0px;

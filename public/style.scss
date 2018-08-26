@@ -588,6 +588,8 @@ body, html {
 }
 
 #impactText {
+    @include transition(none);
+
     &.higher {
         position: absolute;
         bottom: 0px;
