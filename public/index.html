@@ -3,10 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#002060">
+    <meta property="title" content="Brægen" />
+    <meta property="og:title" content="Brægen" />
+    <meta name="description" content="A Johns Hopkins Startup advancing treatment of brain tumors" />
+    <meta name="og:description" content="A Johns Hopkins Startup advancing treatment of brain tumors" />
+    <meta property="og:image" content="http://www.braegentech.com/images/meta_image.png" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="manifest" href="http://www.braegentech.com/manifest.json">
+    <link rel="shortcut icon" href="http://www.braegentech.com/favicon.ico">
     <title>Brægen</title>
   </head>
   <body>
@@ -54,10 +59,19 @@
           <div class="graph-text" id="graph-text-1"><span class="big">1</span> in <span class="big">5</span><br /><span class="small">brain tumors are GBM</span></div>
           <div class="graph-text" id="graph-text-2"><span class="big">18,000</span><br />new cases<br /><span class="small">per year</span></div>
           <div class="paragraph">GBM is prominent, and diagnosis is essentially a <b>death</b> sentence.</div>
-          <br/><br/>
+          <div class="image-row paragraph">
+            <img class="image-half" src="images/GBM1.png" />
+            <img class="image-half" src="images/GBM2.png" />
+            <div class="description">Figure 1: A GBM tumor's aggressive growth over a 6 month period.</div>
+          </div>
           <div class="paragraph">So what treatment options are there?</div>
           <br/><br/>
-          <div class="paragraph">The Stupp Protocol is the standard-of-care treatment of surgery followed by adjuvant radiotherapy and chemotherapy. However, GBM's unique characteristics negates the effects of treatment. The infiltrative growth of GBM makes total surgical resection impossible and radiation therapy difficult without damaging healthy tissue. But perhaps the largest rate limiting obstacle for treating primary brain tumors in patients is the blood-brain barrier. The BBB prevents 99.9% of drugs from reaching tumor sites, rendering oral or intravenous chemotherapy ineffective. And past <b>six months</b>, there is no standard-of-care.</div>
+          <div class="paragraph">The Stupp Protocol is the standard-of-care treatment of surgery followed by adjuvant radiotherapy and chemotherapy. However, GBM's unique characteristics negates the effects of treatment. The infiltrative growth of GBM makes total surgical resection impossible and radiation therapy difficult without damaging healthy tissue. But perhaps the largest rate limiting obstacle for treating primary brain tumors in patients is the blood-brain barrier. The BBB prevents 99.9% of drugs from reaching tumor sites, rendering oral or intravenous chemotherapy ineffective. 
+          <div class="image-row paragraph">
+            <img class="image-whole" src="images/BBB.png" />
+            <div class="description">Figure 2: A computer generated representation of the dense Blood Brain Barrier.</div>
+          </div>
+          Past <b>six months</b>, there is no standard-of-care.</div>
           <br/><br/>
           <div class="paragraph"><b>Zero.</b></div>
           <br/><br/>
@@ -68,6 +82,17 @@
           <div class="paragraph">Unlike the competition, we're not compromising any key criteria for brain tumor treatment.</div>
           <br/><br/>
           <div class="paragraph">Because our goal isn't just to innovate brain cancer treatment, it's to revolutionize it.</div>
+          <br/><br/><br/>
+          <div class="title long-title">Clinician Testimonies</div>
+          <br/>
+          <div class="inline-quote paragraph">
+            "Advances in biocompatible materials have created the potential for implantable neurotechnology to revolutionize brain disease treatment."
+            <div class="author"><div>Dr. Chad Gordon</div> Directory of Neuroplastic surgery<br/>Johns Hopkins University</div>
+          </div>
+          <div class="inline-quote paragraph">
+            "A compact, portable solution to enable long-term drug delivery will be a key technological innovation for GBM."
+            <div class="author"><div>Dr. Rolando Del Maestro</div> Director of Brain Tumor Research<br/>McGill University</div>
+          </div>
         </div>
         <div class="half blue right" id="impactText">
           <div class="hexagon-outline" id="hexagon-outline1"></div>
@@ -263,7 +288,10 @@
             <span id="contact2">braegen@jhu.edu</span>
           </div>
         </a>
-        <div class="footer">© 2018 Braegen Inc. All rights reserved.</div>
+        <div class="footer">
+          © 2018 Braegen Inc. All rights reserved.<br />
+          Made by <a href="http://www.victorjd.com">Victor Dadfar</a>
+        </div>
       </div> 
     </div>
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>

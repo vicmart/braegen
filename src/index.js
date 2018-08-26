@@ -312,16 +312,10 @@ class NavBar extends React.Component {
     }
 
     var paragraphs = document.getElementsByClassName('paragraph');
-    var index = 0;
-    while (index < paragraphs.length && scrollTopVal > getOffset(paragraphs[index]).top - (window.innerHeight * 0.66)) {
-      paragraphs[index].classList.add("show-paragraph");
-      index++;
-    }
+    var titles = document.getElementsByClassName('title');
 
-    while (index < paragraphs.length) {
-      paragraphs[index].classList.remove("show-paragraph");
-      index++;
-    }
+    scrollElementShow(paragraphs, scrollTopVal);
+    scrollElementShow(titles, scrollTopVal);
     
     if (this.lastScroll <= ((new Date()).getTime() - this.scrollOffset) && curPage !== this.state.active_page) {
       this.setState({
@@ -470,16 +464,24 @@ class ScrollHex extends React.Component {
 
     let exactCurPage = getExactCurPage(scrollTopVal);
     let halfCurPage = getHalfCurPage(scrollTopVal);
+
+    var percentImpact = (scrollTopVal - document.querySelector("#impact").offsetTop + (window.innerHeight * 0.5))/(document.querySelector("#impact").offsetHeight - (window.innerHeight * 0.5));
+    var percentTeam = (scrollTopVal - document.querySelector("#team").offsetTop + (window.innerHeight * 0.5))/(document.querySelector("#team").offsetHeight - (window.innerHeight * 0.5));
+    
     if (exactCurPage === 2) {
       document.querySelector("#impactText").classList.add("fixing");
       this.setState({
         scrollOffset: (scrollTopVal - document.querySelector("#impact").offsetTop)
       });
+
+      partialHex(percentImpact * 100, document.querySelector("#hexagon-outline1").childNodes[0].childNodes[0]);
     } else if (exactCurPage === 3) {
       document.querySelector("#teamText").classList.add("fixing");
       this.setState({
         scrollOffset: (scrollTopVal - document.querySelector("#team").offsetTop)
       });
+
+      partialHex(percentTeam * 100, document.querySelector("#hexagon-outline2").childNodes[0].childNodes[0]);
     } else {
       this.setState({
         scrollOffset: 0
@@ -487,8 +489,20 @@ class ScrollHex extends React.Component {
       document.querySelector("#impactText").classList.remove("fixing");
       document.querySelector("#impactText").classList.remove("higher");
 
+      if (halfCurPage === 2 && curPage === 2 && exactCurPage === -1) {
+        partialHex(percentImpact * 100, document.querySelector("#hexagon-outline1").childNodes[0].childNodes[0]);
+      } else {
+        partialHex(0, document.querySelector("#hexagon-outline1").childNodes[0].childNodes[0]);
+      }
+
       document.querySelector("#teamText").classList.remove("fixing");
       document.querySelector("#teamText").classList.remove("higher");
+
+      if (halfCurPage === 3 && curPage === 3 && exactCurPage === -1) {
+        partialHex(percentTeam * 100, document.querySelector("#hexagon-outline2").childNodes[0].childNodes[0]);
+      } else {
+        partialHex(0, document.querySelector("#hexagon-outline2").childNodes[0].childNodes[0]);
+      }
 
       if (halfCurPage > 2) {
         if (curPage === 2) {
@@ -497,6 +511,8 @@ class ScrollHex extends React.Component {
           });
         }
         document.querySelector("#impactText").classList.add("higher");
+
+        partialHex(100, document.querySelector("#hexagon-outline1").childNodes[0].childNodes[0]);
       }
       
       if (halfCurPage > 3) {
@@ -506,6 +522,8 @@ class ScrollHex extends React.Component {
           });
         }
         document.querySelector("#teamText").classList.add("higher");
+        
+        partialHex(100, document.querySelector("#hexagon-outline2").childNodes[0].childNodes[0]);
       }
     }
   }
@@ -523,6 +541,11 @@ class ScrollHex extends React.Component {
 
     let style = {
       top: (window.innerHeight - 150) + pageHeight + this.state.scrollOffset
+    }
+    if (this.state.curPage === this.state.maxPages - 1) {
+      style = {
+        top: (window.innerHeight - 200) + pageHeight + this.state.scrollOffset
+      }
     }
 
     let class_string = (this.state.curPage === this.state.maxPages - 1) ? "rotated" : "";
@@ -598,27 +621,41 @@ function toggleNav() {
   });
 }
 
-function animateGraph(percent, graph) {
-  percent = Math.min(percent, 100);
+function partialHex(percent, hexagon) {
+  percent = Math.min(Math.max(0, percent), 100);
 
-  var raw_points = document.getElementsByClassName("graphs")[0].childNodes[graph].childNodes[0].childNodes[0].attributes.points.value.split(" ");
+  var raw_points = hexagon.childNodes[0].childNodes[0].dataset.points;
+  if (!raw_points)
+  {
+    raw_points = hexagon.childNodes[0].childNodes[0].attributes.points.value;
+    hexagon.childNodes[0].childNodes[0].dataset.points = raw_points;
+  }
+  raw_points = raw_points.split(" ");
+
+  if (percent === 0) {
+    hexagon.childNodes[0].childNodes[0].attributes.points.value = " ";
+    return;
+  } else if (percent === 100) {
+    hexagon.childNodes[0].childNodes[0].attributes.points.value = raw_points;
+    return;
+  }
+
   var pointsX = [];
   var pointsY = [];
-
   for (var i = 0; i < raw_points.length - 1; i++) {
     var raw_point = raw_points[i].split(",");
-    pointsX.push(parseInt(raw_point[0]));
-    pointsY.push(parseInt(raw_point[1]));
+    pointsX.push(parseInt(raw_point[0], 10));
+    pointsY.push(parseInt(raw_point[1], 10));
   }
 
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   var centerX = pointsX.reduce(reducer) / pointsX.length;
   var centerY = pointsY.reduce(reducer) / pointsY.length;
   
-  var fullVertexUpTo = parseInt(percent / 16.6666);
+  var fullVertexUpTo = parseInt(percent / 16.6666, 10);
   var curVertex = 0;
 
-  var result_string = " ";
+  var result_string = "";
 
   while (curVertex <= fullVertexUpTo) {
     result_string += pointsX[curVertex] + "," + pointsY[curVertex] + " ";
@@ -636,10 +673,22 @@ function animateGraph(percent, graph) {
   var newY = (diffY * (partialVertex/16.6666)) + pointsY[curVertex];
   result_string += newX + "," + newY + " ";
 
-  result_string += centerX + "," + centerY + " ";
-  result_string += pointsX[0] + "," + pointsY[0] + " ";
+  result_string += parseInt(centerX, 10) + "," + parseInt(centerY, 10) + " ";
+  result_string += pointsX[0] + "," + pointsY[0];
+  hexagon.childNodes[0].childNodes[0].attributes.points.value = result_string;
+}
 
-  document.getElementsByClassName("graphs")[0].childNodes[0].childNodes[0].childNodes[0].attributes.points.value = result_string;
+function scrollElementShow(elementsByClass, scrollTopVal) {
+  var index = 0;
+    while (index < elementsByClass.length && scrollTopVal > getOffset(elementsByClass[index]).top - (window.innerHeight * 0.75)) {
+      elementsByClass[index].classList.add("show-paragraph");
+      index++;
+    }
+
+    while (index < elementsByClass.length) {
+      elementsByClass[index].classList.remove("show-paragraph");
+      index++;
+    }
 }
 
 var newParent1 = document.getElementById('hexagon-graphs').childNodes[0].childNodes[0];
