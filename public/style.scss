@@ -1,8 +1,8 @@
 $title-font: Copperplate;
-$header-font: Hiragino Kaku Gothic Pro, AppleGothic;
-$header-font-alt: Hiragino Maru Gothic ProN, AppleGothic;
-$header-font-bold: Hiragino Kaku Gothic StdN, AppleGothic;
-$paragraph-font: AppleGothic;
+$header-font: Hiragino Kaku Gothic Pro, AppleGothic, "Apple Gothic", "Century Gothic", "URW Gothic L", "Avant Garde", Futura, sans-serif;
+$header-font-alt: Hiragino Maru Gothic ProN, AppleGothic, "Apple Gothic", "Century Gothic", "URW Gothic L", "Avant Garde", Futura, sans-serif;
+$header-font-bold: Hiragino Kaku Gothic StdN, AppleGothic, "Apple Gothic", "Century Gothic", "URW Gothic L", "Avant Garde", Futura, sans-serif;
+$paragraph-font: "Apple Gothic", AppleGothic, "Century Gothic", "URW Gothic L", "Avant Garde", Futura, sans-serif;
 
 $primary-color: #002060;
 $secondary-color: #1A74BA;
@@ -170,11 +170,11 @@ body, html {
     }
 
     #icon {
-        width: 28px;
+        width: 178px;
         height: 28px;
         margin: $navbar-height/2 - 14px;
         margin-right: 0px;
-        background-image: url("images/logo_white.png");
+        background-image: url("images/full_logo_blue.png");
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -253,7 +253,7 @@ body, html {
         top: -100px;
 
         #icon {
-            background-image: url("images/logo_white.png");
+            background-image: url("images/full_logo_white.png");
         }
     }
 
@@ -262,7 +262,7 @@ body, html {
         top: -100px;
 
         #icon {
-            background-image: url("images/logo.png");
+            background-image: url("images/full_logo_white.png");
         }
     }
 
@@ -273,7 +273,7 @@ body, html {
         border-bottom: 3px solid $background-color;
 
         #icon {
-            background-image: url("images/logo.png");
+            background-image: url("images/full_logo_white.png");
         }
 
         #title {
@@ -367,10 +367,12 @@ body, html {
     }
 
     #hook {
+        color: #FFFFFF;
         color: #FFFFFF80;
         font-family: $paragraph-font;
         font-size: 30px;
         text-align: center;
+        width: 600px;
         @include center();
         @include animation(fadeinanddrop 2s ease);
 
@@ -412,7 +414,7 @@ body, html {
     overflow: hidden;
 
     .text {
-        color: #FFFFFFFF;
+        color: #FFFFFF;
         font-family: $paragraph-font;
         font-size: 22.5px;
         width: 800px;
@@ -425,6 +427,7 @@ body, html {
         margin-left: 225px;
         font-style: italic;
         font-size: 15px;
+        color: #FFFFFF;
         color: #FFFFFF80;
         width: auto;
     }
@@ -446,6 +449,12 @@ body, html {
         #bottom-quote {
             left: 11px;
         }
+    }
+
+    .quote-image {
+        position: absolute;
+        top: 100px;
+        width: 120px;
     }
 }
 
@@ -562,6 +571,7 @@ body, html {
     left: 0;
     width: 100%;
     text-align: center;
+    color: #FFFFFF;
     color: #FFFFFFB0;
     font-size: 1.5em;
 
@@ -572,6 +582,7 @@ body, html {
 
     .small {
         font-size: 0.75em;
+        color: #FFFFFF;
         color: #FFFFFF70;
     }
 }
@@ -924,9 +935,9 @@ body, html {
 
 @media screen and (max-width: 900px) {
     #hook {
-        font-size: 20px !important;
+        font-size: 16px !important;
         color: #FFFFFFA0 !important;
-        width: 90% !important;
+        width: 100% !important;
     }
 
     #mission .text {

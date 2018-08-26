@@ -540,7 +540,6 @@ class ScrollHex extends React.Component {
 
 ReactDOM.render(<Hexagons size={30}/>, document.querySelector('#hexagons'));
 ReactDOM.render(<NavBar />, document.querySelector('#nav-items'));
-ReactDOM.render(<Quotes />, document.querySelector("#quotes"));
 ReactDOM.render(<ScrollHex />, document.querySelector("#scroll-hex"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline1"));
 ReactDOM.render(<HexagonOutline size={150}/>, document.querySelector("#hexagon-outline2"));
@@ -571,6 +570,17 @@ function resize() {
       document.getElementsByClassName('bio')[index].style.height = bioheight + 20 + "px";
     }
   });
+
+  let mission_text = document.querySelector("#mission-text");
+  let left = mission_text.offsetLeft;
+  let top = mission_text.offsetTop;
+  let width = mission_text.offsetWidth;
+  let height = mission_text.offsetHeight;
+
+  document.querySelector("#left-quote").style.left = left - (width/2) - 10 - 60 + "px";
+  document.querySelector("#left-quote").style.top = top - (height/2) - 60 + "px";
+  document.querySelector("#right-quote").style.left = left + (width/2) + 10 - 60 + "px";
+  document.querySelector("#right-quote").style.top = top + (height/2) - 5 - 60 + "px";
 }
 
 document.getElementById("hamburger").onclick = function (oEvent) {
@@ -647,3 +657,14 @@ function getOffset(el) {
     top: rect.top + window.scrollY
   };
 }
+
+let mission_text = document.querySelector("#mission-text");
+let left = mission_text.offsetLeft;
+let top = mission_text.offsetTop;
+let width = mission_text.offsetWidth;
+let height = mission_text.offsetHeight;
+
+document.querySelector("#left-quote").style.left = left - (width/2) - 10 - 60 + "px";
+document.querySelector("#left-quote").style.top = top - (height/2) - 60 + "px";
+document.querySelector("#right-quote").style.left = left + (width/2) + 10 - 60 + "px";
+document.querySelector("#right-quote").style.top = top + (height/2) - 5 - 60 + "px";

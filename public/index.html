@@ -5,28 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="style.css" />
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>Brægen</title>
   </head>
   <body>
     <div id="root">
       <div id="nav-bar">
           <div id="icon" alt=""></div>
-          <div id="title">rægen</div>
           <div id="nav-items"></div>
       </div>
       <div id="scroll-hex"></div>
@@ -49,17 +35,19 @@
       </div>
       <div class="page" id="mission">
         <div id="quotes"></div>
+        <img id="left-quote" class="quote-image" src="images/quote_top.png" />
+        <img id="right-quote" class="quote-image" src="images/quote_bottom.png" />
         <div class="text" id="mission-text">
           Braegen strives to revolutionize treatment of brain tumors with a portable and low profile platform for direct and long-term drug delivery. We want to redefine the standard of care for brain cancer patients.
         </div>
-        <div class="text" id="author">- Victor Dadfar, founder of Braegen</div>
+        <!--div class="text" id="author">- Victor Dadfar, founder of Braegen</div-->
       </div>  
       <div class="page split" id="impact">
         <div class="half white left" id="impactContent">
           <div class="title">Background</div>
           <div class="paragraph">Brain tumors represent an incredibly deadly type of cancer, with over 75,000 new cases per year. Paired with quickly worsening symptoms and shockingly limited treatment options, prognosis is often grim for recently diagnosed patients.</div>
           <br/><br/>
-          <div class="paragraph">Take Glioblastoma Multiforme, or GBM, for example - it is the most common and deadly primary brain cancer. 1 in 5 of all brain tumors are GBM, and over 18,000 new patients in the US are diagnosed with GBM every year, including loved ones and familiar faces like John McCain. The median overall survival for a GBM patient is just over 14 months.</div>
+          <div class="paragraph">Take Glioblastoma Multiforme, or GBM, for example - it is the most common and deadly primary brain cancer. 1 in 5 of all brain tumors are GBM, and over 18,000 new patients in the US are diagnosed with GBM every year - often times loved ones and familiar faces. The median overall survival for a GBM patient is just over 14 months.</div>
           <br/><br/>
           <div class="paragraph" id="hexagon-graphs"></div>
           <br/><br/>
@@ -69,7 +57,7 @@
           <br/><br/>
           <div class="paragraph">So what treatment options are there?</div>
           <br/><br/>
-          <div class="paragraph">The Stupp Protocol is the standard-of-care treatment of surgery followed by adjuct radiotherapy and chemotherapy. However, GBM's unique characteristics negates the effects of treatment. The infiltrative growth of GBM makes total surgical resection impossible and radiation therapy difficult without damaging healthy tissue. But perhaps the largest rate limiting obstacle for treating primary brain tumors in patients is the blood-brain barrier. The BBB prevents 99.9% of drugs from reaching tumor sites, rendering oral or intravenous chemotherapy ineffective. And past <b>six months</b>, there is no standard-of-care.</div>
+          <div class="paragraph">The Stupp Protocol is the standard-of-care treatment of surgery followed by adjuvant radiotherapy and chemotherapy. However, GBM's unique characteristics negates the effects of treatment. The infiltrative growth of GBM makes total surgical resection impossible and radiation therapy difficult without damaging healthy tissue. But perhaps the largest rate limiting obstacle for treating primary brain tumors in patients is the blood-brain barrier. The BBB prevents 99.9% of drugs from reaching tumor sites, rendering oral or intravenous chemotherapy ineffective. And past <b>six months</b>, there is no standard-of-care.</div>
           <br/><br/>
           <div class="paragraph"><b>Zero.</b></div>
           <br/><br/>
@@ -166,7 +154,7 @@
             <div class="group team-member">
               <div class="name">Hadley VanRenterghem</div>
               <div class="position">Engineering</div>
-              Forward-thinking and determined, Hadley is one of Braegen's brightest. Exceptionally smart and comedic, she is by no means your average engineer. Her greatest strengths are finding weaknesses, and because of it Braegen has avoided many pitfalls. She will never pass up an oppurtunity for a joke, nor to let you know she's from Michigan. 
+              Forward-thinking and determined, Hadley is one of Braegen's brightest. Exceptionally smart and comedic, she is by no means your average engineer. Her greatest strengths are finding weaknesses, and because of it Braegen has avoided many pitfalls. She will never pass up an opportunity for a joke, nor to let you know she's from Michigan. 
             </div>
           </div>
           <div class="bio paragraph" id="angela">
@@ -180,8 +168,8 @@
             </svg>
             <div class="group team-member">
               <div class="name">Angela Lu</div>
-              <div class="position">Intern</div>
-              Consistenly surpassing expectations, Angela is an all-star on Braegen's engineering team. Both a cheerleader and a realist, she adds a light-hearted, palpable energy to the team. Though she's sometimes the last person in the room to get a joke, Angela makes up for it in wit and ingenuity that rivals even Victor's.
+              <div class="position">Engineering</div>
+              Consistently surpassing expectations, Angela is an all-star on Braegen's engineering team. Both a cheerleader and a realist, she adds a light-hearted, palpable energy to the team. Though she's sometimes the last person in the room to get a joke, Angela makes up for it in wit and ingenuity that rivals even Victor's.
             </div>
           </div>
           <div class="bio paragraph" id="cindy">
@@ -196,7 +184,7 @@
             <div class="group team-member">
               <div class="name">Cindy SeYeon Choi</div>
               <div class="position">Engineering</div>
-              Cindy is the type of person that requires no oversight. On her own, she has learned complex physical proofs and mechanical disciplines, all without any former education. Incredibly intelligent and meticulously motivated, Cindy is the driving force of the engineering team. She is a strong enthusiast of pasta and absolutely despises chocolate.
+              Cindy is the type of person that requires no oversight. On her own, she has learned complex physical proofs and mechanical disciplines, all without any formal education. Incredibly intelligent and meticulously motivated, Cindy is the driving force of the engineering team. She is a strong enthusiast of pasta and absolutely despises chocolate.
             </div>
           </div>
           <div class="bio paragraph" id="zhou">
@@ -211,7 +199,7 @@
             <div class="group team-member">
               <div class="name">Zhou Li</div>
               <div class="position">Engineering</div>
-              Zhou is the most well-balanced team member. Equally an product developer, tester, public speaker, and author, she is ready to help whenever needed. And because of that, the team could not function without her. Additionally, she co-wrote an academic paper with Victor, and is secretly a singer/songwriter in her freetime.
+              Zhou is the most well-balanced team member. Equally a product developer, tester, public speaker, and author, she is ready to help whenever needed. And because of that, the team could not function without her. Additionally, she co-wrote an academic paper with Victor, and is secretly a singer/songwriter in her freetime.
             </div>
           </div>
           <div class="title">Our Sponsors</div>
